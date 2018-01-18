@@ -10,28 +10,22 @@ var scheduleDutySchema = new Schema({
         type :Number,
         required : true
     },
-    dutyDate : {
-        type : Date,
-        default : Date.now,
-        required : true,
-    },
     centreName : {
-        type :String,
+        centreCode :int,
         required : true
     },
-    startTime :{
-        type :Number,
+    locationName :{
+        locationCode : int,
         required : true
     },
-    endTime: {
-        type :Number,
+    startDuty :{
+        type :Date,
         required : true
     },
-    locations: [{
-        type: mongooseId,
-        ref: 'location',
-        required: true
-    }]
-});
+    endDuty: {
+        type :Date,
+        required : true
+    }
+})
 
 module.exports = mongoose.model('scheduleDuty', scheduleDutySchema);

@@ -14,8 +14,10 @@ var employeeSchema = new Schema({
         type : String,
         required : true
     },
-    Contact : {
-        type :Number,
+    contact : {
+        type :String,
+        minlength : 10,
+        maxlength : 10,
         required : true
     },
     password : {

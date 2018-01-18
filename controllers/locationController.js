@@ -3,18 +3,30 @@ var locations = require('../models/location');
 //var mongoose = require('mongoose');
 
 exports.location_detail = function(req,res,next){
-
+    locations.find({'locationCode' : req.params.locationCode}).then((Location)=>{
+        res.send(Location);
+    },(e)=>{
+        res.status.send(e);
+    })
 }
 
 exports.location_list = function(req,res,next){
     console.log("Location list function called");
-    // locations.find({}).toArray(function(err, result) {
-    //     if (err) throw err;
-    //     console.log(result);
-    //     res.send(result);
-    //   });
-    
+    locations.find({'centreCode' : req.params.centreCode},{locationCode :1, locationName : 1, _id :0}).then((Locations)=>{
+        res.send("Working");
+    },(e)=>{
+        res.status(400).send(e);
+    });
 };
+
+exports.all_location_list = function(req,res,next){
+    locations.find({},{locationCode :1, locationName : 1, _id :0}).then((Locations) => {
+        res.send({Locations});
+       }, (e) => {
+           res.status(400).send(e);
+       });
+};
+
 
 exports.location_create_get = function(req,res,next){
     // let id = req.params.id;
